@@ -1,0 +1,33 @@
+<div class="form-group">
+    <h3>Projeto Spring API RESTfull</h3>
+  </div>
+  
+  <form>
+  
+    <div class="form-group">
+  
+      <label for="login">E-mail:</label>
+  
+      <input type="email" class="form-control" [(ngModel)]='usuario.login' #email="ngModel"
+      id="login" name="login" placeholder="Informe o login" required="true">
+    </div>
+  
+    
+    <div class="form-group">
+  
+      <label for="senha">Senha:</label>
+  
+      <input type="password" class="form-control" [(ngModel)]='usuario.senha' #senha="ngModel"
+      id="senha" name="senha" placeholder="Informe a senha" required="true">
+      
+      <div *ngIf="senha.invalid && email.invalid" class="alert alert-danger">
+        E-mail e Senha devem ser informados
+      </div>
+  
+    </div>
+  
+    <button type="submit" [disabled]="email.invalid // senha.invalid" class="btn btn-primary" (click)="login()" >Acessar</button>
+
+    <button type="submit" [disabled]="email.invalid" class="btn btn-primary" (click)="displaySweetAlert()" >Recuperar Acesso</button>
+  
+  </form>

@@ -1,0 +1,29 @@
+form{
+    padding: 3% 30% 0% 30%;
+}
+h3{
+    padding: 7% 15% 0% 35%;
+}
+
+.alert alert-danger {
+
+    font-size: 70;
+}
+button {
+    background-color: #0687ff;
+    color: white;
+    padding: 10px 20px;
+    margin: 3px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;    
+  }
+
+  input[type=email], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }

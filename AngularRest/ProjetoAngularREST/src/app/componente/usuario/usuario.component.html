@@ -1,0 +1,61 @@
+<br/>
+<br/>
+
+<form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+      <input type="text" class="form-control" id="nome" name="nome" 
+        [(ngModel)] ="nome" placeholder="Nome Usuario">
+    </div>
+    <button type="button" (click)= "consultarUser()" class="btn btn-primary mb-2">Buscar</button>
+    <button type="button" [routerLink] ="['/usuarioAdd']" style="margin-left: 1%;" class="btn btn-success mb-2">Novo</button>
+    <button type="button" data-toggle="modal" data-target="#myModal" (click) = "imprimeRelatorio()"
+     class="btn btn-primary mb-2" style="margin-left: 1%;">PDF</button>
+</form>
+
+<br/>
+<br/>
+<table class="table">
+    <thead class= "thread-dark">
+        <th scope="col">ID</th>
+        <th scope="col">login</th>
+        <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Deletar</th>
+        <th scope="col">Editar</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students | paginate : { itemsPerPage:3, currentPage: p, totalItems : total }; 
+            let i = index">
+            <td>{{ student.id }}</td>
+            <td>{{ student.login }}</td>
+            <td>{{ student.nome }}</td>
+            <td>{{ student.cpf }}</td>
+            <td><button (click)="deleteUsuario(student.id, i)" class="btn btn-danger">Deletar</button></td>
+            <td><button [routerLink]= "['/usuarioAdd', student.id]" class="btn btn-warning">Editar</button></td>
+        </tr> 
+    </tbody>
+</table>
+
+<div class="text-center">
+    <pagination-controls (pageChange)="carregarPage(p = $event);" previousLabel = "Voltar"
+        nextLabel="Avançar"> </pagination-controls>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="min-width: 90%; min-height: 90%; height: 90%;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe id="pdf" width="100%" height="500" frameborder="0" allowtransparency="true"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
